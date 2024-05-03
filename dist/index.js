@@ -1,5 +1,3 @@
-import { Indicators } from '@ixjb94/indicators';
-
 const ohlcdata = [
     {
         "id": 393956,
@@ -12645,11 +12643,12 @@ const ohlcdata = [
 
 // Create a class to handle OHLCV data
 class testdatamodule {
+    // private ta
     // private datalength
     // Load data from JSON file
     constructor(datalength) {
         this.data = datalength > 0 ? ohlcdata.slice(-datalength) : ohlcdata;
-        this.ta = new Indicators();
+        // this.ta=new Indicators()
         // this.datalength=datalength
     }
     // Method to fetch data for a specific range
@@ -12663,17 +12662,11 @@ class testdatamodule {
     getSeriesPeriod(key) {
         return this.data.map(item => item[key]);
     }
-    async getSMAForPeriod(smaperiod) {
-        const filterdata = this.getSeriesPeriod('close');
-        console.log("for smaperiod", filterdata);
-        console.log("object", this.ta.sma(filterdata, smaperiod));
-        return this.ta.sma(filterdata, smaperiod);
-    }
 }
 
-const indobj = new testdatamodule(20);
+new testdatamodule(20);
 // console.log(indobj);
-indobj.getSMAForPeriod(10).then(data => console.log(data));
+// indobj.getSMAForPeriod(10).then(data => console.log(data))
 // console.log(sma);
 // console.log(sma.length);
 // console.log(sma.slice(0,10));

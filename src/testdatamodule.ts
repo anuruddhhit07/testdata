@@ -1,17 +1,17 @@
 import {ohlcdata} from "./testdata"
 import { OHLCV } from "./types/datatypes";
-import { Indicators, IndicatorsNormalizedSync,IndicatorsNormalized } from "@ixjb94/indicators"
+
 
 type SeriesName = 'open' | 'close'|'high'|'low'
 // Create a class to handle OHLCV data
 class testdatamodule {
     private data 
-    private ta
+    // private ta
     // private datalength
     // Load data from JSON file
     constructor(datalength:number) {
         this.data = datalength>0? ohlcdata.slice(-datalength):ohlcdata
-        this.ta=new Indicators()
+        // this.ta=new Indicators()
         // this.datalength=datalength
     }
 
@@ -30,12 +30,12 @@ class testdatamodule {
     }
 
 
-    async getSMAForPeriod(smaperiod:number): Promise<number[]> {
-        const filterdata=this.getSeriesPeriod('close')
-        console.log("for smaperiod",filterdata);
-        console.log("object",this.ta.sma(filterdata,smaperiod));
-        return  this.ta.sma(filterdata,smaperiod)   
-    }
+    // async getSMAForPeriod(smaperiod:number): Promise<number[]> {
+    //     const filterdata=this.getSeriesPeriod('close')
+    //     console.log("for smaperiod",filterdata);
+    //     console.log("object",this.ta.sma(filterdata,smaperiod));
+    //     return  this.ta.sma(filterdata,smaperiod)   
+    // }
 
     // async getEMAForPeriod(emaperiod:number): number[] {
     //     const filterdata=this.getSeriesPeriod('close')
