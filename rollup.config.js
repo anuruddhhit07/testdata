@@ -10,5 +10,5 @@ export default defineConfig({
     name: "ohlctestdata",
   },
   plugins: [typescript({ tsconfig: "tsconfig.json" })],
-  external:["@ixjb94/indicators"]
+  // external:["@ixjb94/indicators"]
 });
