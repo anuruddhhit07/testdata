@@ -12665,6 +12665,8 @@ class testdatamodule {
     }
     getSMAForPeriod(smaperiod) {
         const filterdata = this.getSeriesPeriod('close');
+        console.log("for smaperiod", filterdata);
+        console.log("object", this.ta.sma(filterdata, smaperiod));
         return this.ta.sma(filterdata, smaperiod);
     }
     getEMAForPeriod(emaperiod) {
