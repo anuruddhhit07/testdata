@@ -7,9 +7,6 @@ declare class testdatamodule {
     getDataRange(startIndex: number, endIndex: number): OHLCV[];
     getDataForPeriod(subdatalength: number): OHLCV[];
     getSeriesPeriod(key: SeriesName): number[];
-    getSMAForPeriod(smaperiod: number): number[];
-    getEMAForPeriod(emaperiod: number): number[];
-    getRSIForPeriod(rsiperiod: number): number[];
-    getADXForPeriod(adxperiod: number): number[];
+    getSMAForPeriod(smaperiod: number): Promise<number[]>;
 }
 export default testdatamodule;

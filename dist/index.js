@@ -1,4 +1,4 @@
-import { IndicatorsNormalizedSync } from '@ixjb94/indicators';
+import { Indicators } from '@ixjb94/indicators';
 
 const ohlcdata = [
     {
@@ -12649,7 +12649,7 @@ class testdatamodule {
     // Load data from JSON file
     constructor(datalength) {
         this.data = datalength > 0 ? ohlcdata.slice(-datalength) : ohlcdata;
-        this.ta = new IndicatorsNormalizedSync();
+        this.ta = new Indicators();
         // this.datalength=datalength
     }
     // Method to fetch data for a specific range
@@ -12663,33 +12663,20 @@ class testdatamodule {
     getSeriesPeriod(key) {
         return this.data.map(item => item[key]);
     }
-    getSMAForPeriod(smaperiod) {
+    async getSMAForPeriod(smaperiod) {
         const filterdata = this.getSeriesPeriod('close');
         console.log("for smaperiod", filterdata);
         console.log("object", this.ta.sma(filterdata, smaperiod));
         return this.ta.sma(filterdata, smaperiod);
     }
-    getEMAForPeriod(emaperiod) {
-        const filterdata = this.getSeriesPeriod('close');
-        return this.ta.ema(filterdata, emaperiod);
-    }
-    getRSIForPeriod(rsiperiod) {
-        const filterdata = this.getSeriesPeriod('close');
-        return this.ta.rsi(filterdata, rsiperiod);
-    }
-    getADXForPeriod(adxperiod) {
-        const high = this.getSeriesPeriod('high');
-        const low = this.getSeriesPeriod('low');
-        return this.ta.adx(high, low, adxperiod);
-    }
 }
 
 const indobj = new testdatamodule(20);
 // console.log(indobj);
-const sma = indobj.getSMAForPeriod(10);
-console.log(sma);
-console.log(sma.length);
-console.log(sma.slice(0, 10));
-console.log(sma[0]);
+indobj.getSMAForPeriod(10).then(data => console.log(data));
+// console.log(sma);
+// console.log(sma.length);
+// console.log(sma.slice(0,10));
+// console.log(sma[0]);
 
 export { testdatamodule };

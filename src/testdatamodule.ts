@@ -11,7 +11,7 @@ class testdatamodule {
     // Load data from JSON file
     constructor(datalength:number) {
         this.data = datalength>0? ohlcdata.slice(-datalength):ohlcdata
-        this.ta=new IndicatorsNormalizedSync()
+        this.ta=new Indicators()
         // this.datalength=datalength
     }
 
@@ -30,28 +30,28 @@ class testdatamodule {
     }
 
 
-    getSMAForPeriod(smaperiod:number): number[] {
+    async getSMAForPeriod(smaperiod:number): Promise<number[]> {
         const filterdata=this.getSeriesPeriod('close')
         console.log("for smaperiod",filterdata);
         console.log("object",this.ta.sma(filterdata,smaperiod));
         return  this.ta.sma(filterdata,smaperiod)   
     }
 
-    getEMAForPeriod(emaperiod:number): number[] {
-        const filterdata=this.getSeriesPeriod('close')
-        return  this.ta.ema(filterdata,emaperiod)   
-    }
+    // async getEMAForPeriod(emaperiod:number): number[] {
+    //     const filterdata=this.getSeriesPeriod('close')
+    //     return  this.ta.ema(filterdata,emaperiod)   
+    // }
 
-    getRSIForPeriod(rsiperiod:number): number[] {
-        const filterdata=this.getSeriesPeriod('close')
-        return  this.ta.rsi(filterdata,rsiperiod)   
-    }
+    // async getRSIForPeriod(rsiperiod:number): number[] {
+    //     const filterdata=this.getSeriesPeriod('close')
+    //     return  this.ta.rsi(filterdata,rsiperiod)   
+    // }
 
-    getADXForPeriod(adxperiod:number): number[] {
-        const high=this.getSeriesPeriod('high')
-        const low=this.getSeriesPeriod('low')
-        return  this.ta.adx(high,low,adxperiod)   
-    }
+    // async getADXForPeriod(adxperiod:number): number[] {
+    //     const high=this.getSeriesPeriod('high')
+    //     const low=this.getSeriesPeriod('low')
+    //     return  this.ta.adx(high,low,adxperiod)   
+    // }
 
     // Method to fetch data for a specific symbol
    
