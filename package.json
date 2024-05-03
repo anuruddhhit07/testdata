@@ -12,7 +12,9 @@
     "start": "npx ts-node src/index.ts",
     "start0": "node dist/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "npm install git+https://github.com/anuruddhhit07/testdata.git"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
