@@ -1,3 +1,5 @@
+import { IndicatorsNormalizedSync } from '@ixjb94/indicators';
+
 const ohlcdata = [
     {
         "id": 393956,
@@ -12643,18 +12645,49 @@ const ohlcdata = [
 
 // Create a class to handle OHLCV data
 class testdatamodule {
+    // private datalength
     // Load data from JSON file
-    constructor() {
-        this.data = ohlcdata;
+    constructor(datalength) {
+        this.data = datalength > 0 ? ohlcdata.slice(-datalength) : ohlcdata;
+        this.ta = new IndicatorsNormalizedSync();
+        // this.datalength=datalength
     }
     // Method to fetch data for a specific range
     getDataRange(startIndex, endIndex) {
         return this.data.slice(startIndex, endIndex + 1);
     }
     // Method to fetch data for a specific time period
-    getDataForPeriod(period) {
-        return this.data.slice(-period);
+    getDataForPeriod(subdatalength) {
+        return this.data.slice(-subdatalength);
+    }
+    getSeriesPeriod(key) {
+        return this.data.map(item => item[key]);
+    }
+    getSMAForPeriod(smaperiod) {
+        const filterdata = this.getSeriesPeriod('close');
+        return this.ta.sma(filterdata, smaperiod);
+    }
+    getEMAForPeriod(emaperiod) {
+        const filterdata = this.getSeriesPeriod('close');
+        return this.ta.ema(filterdata, emaperiod);
+    }
+    getRSIForPeriod(rsiperiod) {
+        const filterdata = this.getSeriesPeriod('close');
+        return this.ta.rsi(filterdata, rsiperiod);
+    }
+    getADXForPeriod(adxperiod) {
+        const high = this.getSeriesPeriod('high');
+        const low = this.getSeriesPeriod('low');
+        return this.ta.adx(high, low, adxperiod);
     }
 }
+
+new testdatamodule(20);
+// console.log(indobj);
+// const sma= indobj.getSMAForPeriod(10)
+// console.log(sma);
+// console.log(sma.length);
+// console.log(sma.slice(0,10));
+// console.log(sma[0]);
 
 export { testdatamodule };
